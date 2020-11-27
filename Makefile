@@ -5,10 +5,9 @@ HEADS = $(shell find ./include -type f -name *.h)
 OBJS = $(SRCS:.cpp=.o)
 DEPS = Makefile.depend
 
-INCLUDES = -I./include
-CXXFLAGS = -O2 -Wall $(INCLUDES)
-LDFLAGS = -lm
-
+INCLUDES = -I./include -I$(OECORE_TARGET_SYSROOT)/usr/include
+CXXFLAGS = -O2 -Wall $(INCLUDES) $(shell printenv CXXFLAGS)
+LDFLAGS = -lm $(shell printenv LDFLAGS)
 
 all: $(TARGET)
 
@@ -20,7 +19,7 @@ run: all
 
 .PHONY: depend clean
 depend:
-	$(CXX) $(INCLUDES) -MM $(SRCS) > $(DEPS)
+	$(CXX) $(CXXFLAGS) -MM $(SRCS) > $(DEPS)
 	@sed -i -E "s/^(.+?).o: ([^ ]+?)\1/\2\1.o: \2\1/g" $(DEPS)
 
 clean:

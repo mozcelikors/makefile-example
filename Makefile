@@ -6,8 +6,8 @@ OBJS = $(SRCS:.cpp=.o)
 DEPS = Makefile.depend
 
 INCLUDES = -I./include -I$(OECORE_TARGET_SYSROOT)/usr/include
-CXXFLAGS = -O2 -Wall $(INCLUDES) $(shell printenv CXXFLAGS)
-LDFLAGS = -lm $(shell printenv LDFLAGS)
+CXXFLAGS = -O2 -Wall $(INCLUDES) $(CXXFLAGS)
+LDFLAGS = -lm $(LDFLAGS)
 
 all: $(TARGET)
 

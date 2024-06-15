@@ -5,9 +5,9 @@ HEADS = $(shell find ./include -type f -name *.h)
 OBJS = $(SRCS:.cpp=.o)
 DEPS = Makefile.depend
 
-INCLUDES = -I./include -I$(OECORE_TARGET_SYSROOT)/usr/include
-CXXFLAGS = -O2 -Wall $(INCLUDES)
-LDFLAGS = -lm
+INCLUDES += -I./include -I$(OECORE_TARGET_SYSROOT)/usr/include
+CXXFLAGS += -O2 -Wall $(INCLUDES)
+LDFLAGS += -lm
 
 all: $(TARGET)
 
